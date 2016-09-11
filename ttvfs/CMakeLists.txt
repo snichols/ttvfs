@@ -1,32 +1,38 @@
 
-set(ttvfs_SRC
+set(ttvfs_code
+    VFSBase.cpp
+    VFSDebug.cpp
+    VFSDir.cpp
+    VFSDirInternal.cpp
+    VFSDirView.cpp
+    VFSFile.cpp
+    VFSFileFuncs.cpp
+    VFSLoader.cpp
+    VFSRoot.cpp
+    VFSSystemPaths.cpp
+    VFSTools.cpp
+)
+
+set(ttvfs_headers
     ttvfs.h
     VFSArchiveLoader.h
-    VFSBase.cpp
     VFSBase.h
-    VFSDebug.cpp
     VFSDebug.h
     VFSDefines.h
-    VFSDir.cpp
     VFSDir.h
-    VFSDirInternal.cpp
     VFSDirInternal.h
-    VFSDirView.cpp
     VFSDirView.h
-    VFSFile.cpp
     VFSFile.h
-    VFSFileFuncs.cpp
     VFSFileFuncs.h
     VFSInternal.h
-    VFSLoader.cpp
     VFSLoader.h
     VFSRefcounted.h
     VFSRoot.h
-    VFSRoot.cpp
-    VFSSystemPaths.cpp
     VFSSystemPaths.h
-    VFSTools.cpp
     VFSTools.h
 )
 
-add_library(ttvfs ${ttvfs_SRC})
+add_library(ttvfs ${ttvfs_code} ${ttvfs_headers})
+
+install(TARGETS ttvfs DESTINATION lib)
+install(FILES ${ttvfs_headers} DESTINATION include/ttvfs)

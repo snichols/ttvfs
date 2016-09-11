@@ -1,18 +1,23 @@
 
-set(ttvfs_zip_SRC
+set(ttvfs_zip_code
     VFSDirZip.cpp
-    VFSDirZip.h
     VFSFileZip.cpp
-    VFSFileZip.h
     VFSZipArchiveLoader.cpp
-    VFSZipArchiveLoader.h
     VFSZipArchiveRef.cpp
-    VFSZipArchiveRef.h
     miniz.c
+)
+
+set(ttvfs_zip_headers
+    VFSDirZip.h
+    VFSFileZip.h
+    VFSZipArchiveLoader.h
+    VFSZipArchiveRef.h
     miniz.h
     ttvfs_zip.h
 )
 
 include_directories(${TTVFS_INCLUDE_DIRS})
+add_library(ttvfs_zip ${ttvfs_zip_code} ${ttvfs_zip_headers})
 
-add_library(ttvfs_zip ${ttvfs_zip_SRC})
+install(TARGETS ttvfs_zip DESTINATION lib)
+install(FILES ${ttvfs_zip_headers} DESTINATION include/ttvfs)
